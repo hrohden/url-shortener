@@ -49,9 +49,9 @@
                     </thead>
                     <tbody>
                         <tr th:each="url : ${urls}">
-                            <td th:text="${'/' + url.hash}">localhost/test</td>
+                            <td><a th:href="${'http://localhost/' + url.hash}" th:text="${'http://localhost/' + url.hash}" target="_blank">localhost/test</a></td>
                             <td>
-                                <a th:href="${url.originalURL}" th:text="${url.originalURL}">http://www.google.com</a>
+                                <a th:href="${url.originalURL}" th:text="${url.originalURL}" target="_blank">http://www.google.com</a>
                             </td>
                         </tr>
                     </tbody>
