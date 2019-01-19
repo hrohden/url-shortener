@@ -27,6 +27,9 @@ class URL {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar creationDate;
 
+    public URL() {
+    }
+
     public URL(String originalURL, String hash, Calendar creationDate) {
         this.originalURL = originalURL;
         this.hash = hash;
@@ -36,5 +39,15 @@ class URL {
     @Override
     public String toString() {
         return originalURL;
+    }
+
+    public static String randomAlphaNumeric(int count) {
+        String seed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int)(Math.random()*seed.length());
+            builder.append(seed.charAt(character));
+        }
+        return builder.toString();
     }
 }
