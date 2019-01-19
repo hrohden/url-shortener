@@ -2,29 +2,34 @@ version: '3'
 services:
   nginx:
    container_name: some-nginx
+   networks:
+    - app-network
    image: nginx:1.13
-   restart: always
    ports:
-   - 80:80
-   - 443:443
+    - 80:80
+    - 443:443
    volumes:
-   - ./nginx/conf.d:/etc/nginx/conf.d
+    - ./nginx/conf.d:/etc/nginx/conf.d
    depends_on:
-   - app
+    - app
 
   mysql:
    container_name: some-mysql
    image: mysql/mysql-server:5.7
+   networks:
+    - app-network
    environment:
     MYSQL_DATABASE: test
-    MYSQL_ROOT_PASSWORD: hellokoding
+    MYSQL_ROOT_PASSWORD: password123
+    MYSQL_PASSWORD: password123
     MYSQL_ROOT_HOST: '%'
    ports:
-   - "3306:3306"
+    - "3306:3306"
    restart: always
 
   app:
-    restart: always
+    networks:
+     - app-network
     build: ./app
     working_dir: /app
     volumes:
@@ -35,3 +40,7 @@ services:
     command: mvn clean spring-boot:run
     depends_on:
       - mysql
+
+networks:
+  app-network:
+    driver: bridge
