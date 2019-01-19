@@ -2,6 +2,8 @@ package com.henriquerohden.urlshortener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Calendar;
+
 import lombok.Data;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -22,5 +24,17 @@ class URL {
     private String hash;
 
     @Column(name = "creation_date")
-    private LocalDateTime creationDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar creationDate;
+
+    public URL(String originalURL, String hash, Calendar creationDate) {
+        this.originalURL = originalURL;
+        this.hash = hash;
+        this.creationDate = creationDate;
+    }
+
+    @Override
+    public String toString() {
+        return originalURL;
+    }
 }

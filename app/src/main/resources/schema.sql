@@ -1,8 +1,0 @@
-DROP TABLE IF EXISTS urls;
-CREATE TABLE urls (
-    id   INTEGER      NOT NULL AUTO_INCREMENT,
-    original_url VARCHAR(256) NOT NULL,
-    hash_code VARCHAR(256) NOT NULL UNIQUE,
-    creation_date TIMESTAMP NOT NULL,
-    PRIMARY KEY (id)
-);

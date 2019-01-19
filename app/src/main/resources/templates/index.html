@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -48,9 +48,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>localhost/test</td>
-                            <td>http://www.google.com</td>
+                        <tr th:each="url : ${urls}">
+                            <td th:text="${'/' + url.hash}">localhost/test</td>
+                            <td>
+                                <a th:href="${url.originalURL}" th:text="${url.originalURL}">http://www.google.com</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
