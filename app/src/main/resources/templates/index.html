@@ -25,11 +25,13 @@
                     <div class="display-4">
                         URL Shortener
                     </div>
+                    <p class="lead">Use this form below to create short URLs that can be shared in any social media. </p>
+                    <p class="lead">URLs created are shorter than the original ones, and save precious characters.</p>
                 </div>
 
                 <form class="mb-4" method="post" th:action="@{/save}">
 
-                    <div class="input-group">
+                    <div class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="URL" name="originalURL">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit" id="button-addon2">Add URL</button>
