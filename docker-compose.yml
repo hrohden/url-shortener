@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-   container_name: some-nginx
+   container_name: nginx
    networks:
     - app-network
    image: nginx:1.13
@@ -14,18 +14,16 @@ services:
     - app
 
   mysql:
-   container_name: some-mysql
+   container_name: mysql
    image: mysql/mysql-server:5.7
    networks:
     - app-network
    environment:
-    MYSQL_DATABASE: test
+    MYSQL_DATABASE: url_shortener
     MYSQL_ROOT_PASSWORD: password123
-    MYSQL_PASSWORD: password123
     MYSQL_ROOT_HOST: '%'
    ports:
     - "3306:3306"
-   restart: always
 
   app:
     networks:
