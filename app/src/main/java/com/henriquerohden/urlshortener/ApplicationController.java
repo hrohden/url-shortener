@@ -34,6 +34,8 @@ public class ApplicationController {
     @GetMapping("/{hash}")
     public String redirect(@PathVariable("hash") String hash) {
         URL url = repository.findByHash(hash);
+        url.addHits();
+        repository.save(url);
         return "redirect:" + url.getOriginalURL();
     }
 

@@ -27,13 +27,24 @@ class URL {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar creationDate;
 
+    private Integer hits;
+
     public URL() {
+        this.hits = 0;
     }
 
     public URL(String originalURL, String hash, Calendar creationDate) {
         this.originalURL = originalURL;
         this.hash = hash;
         this.creationDate = creationDate;
+        this.hits = 0;
+    }
+
+    public URL(String originalURL, String hash, Calendar creationDate, Integer hits) {
+        this.originalURL = originalURL;
+        this.hash = hash;
+        this.creationDate = creationDate;
+        this.hits = hits;
     }
 
     @Override
@@ -49,5 +60,9 @@ class URL {
             builder.append(seed.charAt(character));
         }
         return builder.toString();
+    }
+
+    public void addHits() {
+        hits++;
     }
 }

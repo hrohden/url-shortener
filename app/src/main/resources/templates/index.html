@@ -47,6 +47,7 @@
                         <tr>
                             <th>URL</th>
                             <th>Target URL</th>
+                            <th>Hits</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,7 @@
                             <td>
                                 <a th:href="${url.originalURL}" th:text="${url.originalURL}" target="_blank">http://www.google.com</a>
                             </td>
+                            <td th:text="${url.hits}">2</td>
                         </tr>
                     </tbody>
                 </table>
