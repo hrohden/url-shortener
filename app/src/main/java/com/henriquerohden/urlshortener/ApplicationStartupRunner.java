@@ -22,7 +22,7 @@ public class ApplicationStartupRunner implements ApplicationRunner {
                 new URL("http://www.microsoft.com", "bl5dQhui", Calendar.getInstance()),
                 new URL("http://www.apple.com", "IJMtl1ji", Calendar.getInstance()),
                 new URL("http://www.amazon.com", "V2rSTB3W", Calendar.getInstance()),
-                new URL("http://www.facebool.com", "eFkViScd", Calendar.getInstance())
+                new URL("http://www.facebook.com", "eFkViScd", Calendar.getInstance())
         );
         repository.saveAll(mocks);
     }

@@ -16,7 +16,7 @@ public class ApplicationController {
     private URLRepository repository;
 
     @GetMapping("/")
-    public ModelAndView index(RedirectAttributes attributes) {
+    public ModelAndView index() {
         return new ModelAndView("index", "urls", repository.findAll());
     }
 
