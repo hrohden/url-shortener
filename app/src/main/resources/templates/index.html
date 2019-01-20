@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+    <link rel="icon" href="../static/favicon.png" th:href="@{/favicon.png}">
 
     <title>URL Shortener</title>
 </head>
@@ -47,19 +48,18 @@
                         <tr>
                             <th>URL</th>
                             <th>Target URL</th>
-                            <th>Hits</th>
+                            <th class="text-right">Hits</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="url : ${urls}">
                             <td>
-                                <div><a th:href="${#request.requestURL + url.hash}" th:text="${#request.requestURL + url.hash}" target="_blank">localhost/test</a></div>
-                                <div class="text-muted"><a th:href="${#request.requestURL + 'api/' + url.hash}" th:text="${#request.requestURL + 'api/' + url.hash}" target="_blank">localhost/test</a></div>
+                                <a href="#" th:href="${#request.requestURL + url.hash}" th:text="${#request.requestURL + url.hash}" target="_blank">localhost/test</a> (<a href="#" th:href="${#request.requestURL + 'api/' + url.hash}" target="_blank">API</a>)
                             </td>
                             <td>
-                                <a th:href="${url.originalURL}" th:text="${url.originalURL}" target="_blank">http://www.google.com</a>
+                                <a href="#" th:href="${url.originalURL}" th:text="${url.originalURL}" target="_blank">http://www.google.com</a>
                             </td>
-                            <td th:text="${url.hits}">2</td>
+                            <td th:text="${url.hits}" class="text-right">2</td>
                         </tr>
                     </tbody>
                 </table>
