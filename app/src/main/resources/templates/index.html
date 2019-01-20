@@ -52,7 +52,10 @@
                     </thead>
                     <tbody>
                         <tr th:each="url : ${urls}">
-                            <td><a th:href="${#request.requestURL + url.hash}" th:text="${#request.requestURL + url.hash}" target="_blank">localhost/test</a></td>
+                            <td>
+                                <div><a th:href="${#request.requestURL + url.hash}" th:text="${#request.requestURL + url.hash}" target="_blank">localhost/test</a></div>
+                                <div class="text-muted"><a th:href="${#request.requestURL + 'api/' + url.hash}" th:text="${#request.requestURL + 'api/' + url.hash}" target="_blank">localhost/test</a></div>
+                            </td>
                             <td>
                                 <a th:href="${url.originalURL}" th:text="${url.originalURL}" target="_blank">http://www.google.com</a>
                             </td>
