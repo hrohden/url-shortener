@@ -1,13 +1,10 @@
 package com.henriquerohden.urlshortener;
 
-import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -37,9 +34,15 @@ public class ApplicationController {
         return "redirect:" + url.getOriginalURL();
     }
 
+    @GetMapping(value = "/api", produces = "application/json")
+    @ResponseBody
+    public List<URL> statistics() {
+        return repository.findAll();
+    }
+
     @GetMapping(value = "/api/{hash}", produces = "application/json")
     @ResponseBody
-    public URL statistics(@PathVariable("hash") String hash) {
+    public URL statisticsByHash(@PathVariable("hash") String hash) {
         return repository.findByHash(hash);
     }
 
