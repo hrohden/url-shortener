@@ -7,73 +7,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="icon" href="../static/favicon.png" th:href="@{/favicon.png}">
 
     <title>URL Shortener</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="#">URL Shortener</a>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="#"><i class="fas fa-fw fa-globe-americas"></i> URL Shortener</a>
+</nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="jumbotron text-center">
-                    <div class="display-4">
-                        URL Shortener
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron text-center">
+                <div class="display-4">
+                    <div><i class="fas fa-fw fa-globe-americas"></i></div>
+                    URL Shortener
+                </div>
+                <p class="lead">Use this form below to create short URLs that can be shared in any social media. </p>
+                <p class="lead">URLs created are shorter than the original ones, and save precious characters.</p>
+            </div>
+
+            <form class="mb-4" method="post" th:action="@{/save}">
+
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="URL" name="originalURL">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-fw fa-plus"></i> Add URL</button>
                     </div>
-                    <p class="lead">Use this form below to create short URLs that can be shared in any social media. </p>
-                    <p class="lead">URLs created are shorter than the original ones, and save precious characters.</p>
                 </div>
 
-                <form class="mb-4" method="post" th:action="@{/save}">
+            </form>
 
-                    <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="URL" name="originalURL">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" id="button-addon2">Add URL</button>
-                        </div>
-                    </div>
+            <h2>List of URLs</h2>
 
-                </form>
-
-                <h2>List of URLs</h2>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>URL</th>
-                            <th>Target URL</th>
-                            <th class="text-right">Hits</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="url : ${urls}">
-                            <td>
-                                <a href="#" th:href="${#request.requestURL + url.hash}" th:text="${#request.requestURL + url.hash}" target="_blank">localhost/test</a> (<a href="#" th:href="${#request.requestURL + 'api/' + url.hash}" target="_blank">API</a>)
-                            </td>
-                            <td>
-                                <a href="#" th:href="${url.originalURL}" th:text="${url.originalURL}" target="_blank">http://www.google.com</a>
-                            </td>
-                            <td th:text="${url.hits}" class="text-right">2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Target URL</th>
+                    <th class="text-right">Hits</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="url : ${urls}">
+                    <td>
+                        <a href="#" th:href="${#request.requestURL + url.hash}"
+                           th:text="${#request.requestURL + url.hash}" target="_blank">localhost/test</a> (<a href="#"
+                                                                                                              th:href="${#request.requestURL + 'api/' + url.hash}"
+                                                                                                              target="_blank">API</a>)
+                    </td>
+                    <td>
+                        <a href="#" th:href="${url.originalURL}" th:text="${url.originalURL}" target="_blank">http://www.google.com</a>
+                    </td>
+                    <td th:text="${url.hits}" class="text-right">2</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
 </body>
 
